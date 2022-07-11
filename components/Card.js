@@ -20,13 +20,11 @@ export default function ActionAreaCard({trends}) {
           alt="green iguana"
           sx={{objectFit:"fill"}}
         />
-        <CardContent sx={{height:200,display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+        <CardContent sx={{height:200,display:"flex",flexDirection:"column",justifyContent:"center"}}>
           <Typography gutterBottom variant="h5" component="div">
            {trends.original_title}
           </Typography>
-          <Typography gutterBottom variant="p" component="div">
-           {trends.overview}
-          </Typography>
+      
         </CardContent>
           <Typography variant="body2" color="text.secondary">
        {trends.vote_average}
