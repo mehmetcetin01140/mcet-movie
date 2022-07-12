@@ -53,3 +53,70 @@ background-color: transparent;
     object-fit: contain;
   }
 }
+
+.Search{
+  position: relative;
+  height: 300px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .search-text-area{
+    width: 100%;
+   position: absolute;
+   top: -60px;
+   text-align: center;
+  
+  }
+  
+}
+.Search::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: url("https://wallpaperaccess.com/full/2033355.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: opacity(.4);
+  border-radius: 40px;
+}
+.search-inside {
+  position: relative;
+  width: 60%;
+  @media screen and (max-width:766px) {
+    width: 100%;
+    
+  }
+
+}
+.dropdown{
+  z-index: 2;
+  width: 100%;
+  height: 400px;
+  padding: 10px;
+  color: black !important;
+  position: absolute;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  overflow-y: auto;
+  transition: 1s all;
+  display: none;
+  img{
+ 
+    width: 40px;
+    object-fit: cover;
+    border-radius: 3px;
+  }
+  
+}
+
+.card-image{
+  overflow: hidden;
+  transition: .4s all;
+  &:hover{
+    transform: scale(1.1);
+  }
+}

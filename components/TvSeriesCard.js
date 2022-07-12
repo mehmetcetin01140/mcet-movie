@@ -7,10 +7,10 @@ import { CardActionArea } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import Link from 'next/link';
 import Box from '@mui/material/Box';
-export default function ActionAreaCard({trends}) {
+export default function TvSeriesCard({trends}) {
   return (
     <>
-    <Link href={`/content/${trends.id}`}>
+    <Link href={`/tvseries/${trends.id}`}>
  
     <Card sx={{ maxWidth: "100%"}}>
       <CardActionArea>

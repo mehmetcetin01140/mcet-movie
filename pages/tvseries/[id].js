@@ -6,12 +6,12 @@ import { Typography } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import Container from "@mui/material/Container";
 import RecommendationSlider from "../../components/RecommendationSlider";
-const Content = ({ currentMovie, recommendationResult }) => {
+const TvSeries = ({ currentMovie, recommendationResult }) => {
   console.log(currentMovie);
   return (
     <Container>
       <Typography variant="h5" sx={{ my: 2 }}>
-        {currentMovie.original_title}
+        {currentMovie.original_name}
       </Typography>
       <Box
         sx={{
@@ -73,19 +73,12 @@ const Content = ({ currentMovie, recommendationResult }) => {
         </Grid>
       </Box>
       <Grid container sx={{ textAlign: "center" }}>
-        <Grid lg={4} xs={12} item sx={{ marginTop: 2 }}>
+     
           <Typography variant="h7">
-            Release Date : {currentMovie.release_date}
+            First Air Date : {currentMovie.first_air_date}
           </Typography>
-        </Grid>
-        <Grid lg={4} xs={12} item sx={{ marginTop: 2 }}>
-          <Typography variant="h7">Budget : {currentMovie.budget} $</Typography>
-        </Grid>
-        <Grid lg={4} xs={12} item sx={{ marginTop: 2 }}>
-          <Typography variant="h7">
-            Revenue : {currentMovie.revenue} $
-          </Typography>
-        </Grid>
+      
+      
       </Grid>
 
       <Typography variant="h5" sx={{ mt: 5 }}>
@@ -101,23 +94,24 @@ const Content = ({ currentMovie, recommendationResult }) => {
             Recommendations
           </Typography>
 
-          <RecommendationSlider recommendation={recommendationResult} path={"/content/"}/>
+          <RecommendationSlider recommendation={recommendationResult} path="/tvseries/" />
         </Box>
       )}
     </Container>
   );
 };
 
-export default Content;
+export default TvSeries;
+
 
 export const getServerSideProps = async (context) => {
   const id = context.query.id;
   const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=29dd2016aad2fc31cccad2e917428cd4`
+    `https://api.themoviedb.org/3/tv/${id}?api_key=29dd2016aad2fc31cccad2e917428cd4`
   );
   const currentMovie = await res.json();
   const recommendation = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=29dd2016aad2fc31cccad2e917428cd4`
+    `https://api.themoviedb.org/3/tv/${id}/recommendations?api_key=29dd2016aad2fc31cccad2e917428cd4`
   );
   const recommendationResult = await recommendation.json();
   return { props: { currentMovie, recommendationResult } };

@@ -34,8 +34,10 @@ const TrendMovies = () => {
       },[])
     return (
       
-         <Box sx={{ flexGrow: 1}}>
-   
+         <Box sx={{ flexGrow: 1,padding:2}}>
+   <Typography sx={{my:2}} variant="h6">
+    Trend Movies
+   </Typography>
       <Grid container spacing={2} align = "center" justify = "center" alignItems = "center">
         {
             trendMovies.map(item=>(
