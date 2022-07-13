@@ -87,7 +87,7 @@ export default function ButtonAppBar() {
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" className="app-bar">
+        <AppBar position="static" className="app-bar" >
           <Container>
             <Toolbar className="app-main">
               <Link href="/">
