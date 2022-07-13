@@ -65,9 +65,9 @@ background-color: transparent !important;
   position: relative !important;
   height: 300px;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: flex !important; 
+  justify-content: center !important;
+  align-items: center !important;
   .search-text-area{
     width: 100%;
    position: absolute !important;
