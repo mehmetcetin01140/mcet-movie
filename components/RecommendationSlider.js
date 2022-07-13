@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -6,16 +6,16 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import 'swiper/css/bundle';
+import "swiper/css/bundle";
 
 // import required modules
 import { Pagination } from "swiper";
 import Link from "next/link";
 
-export default function RecommendationSlider({recommendation,path}) {
-
-        const filterNullPosters = recommendation.results?.filter(recom=>recom.poster_path !== null)
-        console.log(filterNullPosters);
+export default function RecommendationSlider({ recommendation, path }) {
+  const filterNullPosters = recommendation.results?.filter(
+    (recom) => recom.poster_path !== null
+  );
   return (
     <>
       <Swiper
@@ -41,22 +41,21 @@ export default function RecommendationSlider({recommendation,path}) {
         modules={[Pagination]}
         className="mySwiper"
       >
-        {
-            filterNullPosters?.map((recom,index)=>(
-              <>
-              <SwiperSlide key={index} >
-                <Link href={`${path}${recom.id}`}>
-                   {
-                     
-                     <img src={`https://image.tmdb.org/t/p/original/${recom.poster_path}`} className="sliderImage"/>
-                     
-                    }
-                    </Link>
-                </SwiperSlide>
-                </>
-            ))
-        }
-       
+        {filterNullPosters?.map((recom, index) => (
+        
+            <SwiperSlide key={index}>
+              <Link href={`${path}${recom.id}`} >
+                {
+                  <img
+                    src={`https://image.tmdb.org/t/p/original/${recom.poster_path}`}
+                    className="sliderImage"
+                    alt="slider-image"
+                  />
+                }
+              </Link>
+            </SwiperSlide>
+         
+        ))}
       </Swiper>
     </>
   );

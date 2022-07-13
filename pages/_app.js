@@ -1,16 +1,36 @@
-import '../styles/globals.scss'
-import Layout from "../layout/layout"
-import { wrapper, store } from "../store/store";
-import { Provider } from "react-redux";
+import "../styles/globals.scss";
+import Layout from "../layout/layout";
+import { useEffect, useState } from "react";
+import Router from "next/router";
+import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
+
 function MyApp({ Component, pageProps }) {
+  const [loader, setLoader] = useState(false);
+  const loading = () => {
+    if (loader) {
+      return (
+        <Box sx={{ width: "100%", position: "absolute" }}>
+          <LinearProgress color="inherit" />
+        </Box>
+      );
+    }
+  };
+  useEffect(() => {
+    Router.events.on("routeChangeStart", () => setLoader(true));
+    Router.events.on("routeChangeComplete", () =>
+      setTimeout(() => {
+        setLoader(false);
+      }, 500)
+    );
+  }, []);
 
   return (
     <Layout>
-        <Provider store={store}>
+        {loading()}
         <Component {...pageProps} />
-      </Provider>
     </Layout>
-  )
+  );
 }
 
-export default wrapper.withRedux(MyApp);
+export default MyApp;

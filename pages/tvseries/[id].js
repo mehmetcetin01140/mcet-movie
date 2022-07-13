@@ -6,10 +6,15 @@ import { Typography } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import Container from "@mui/material/Container";
 import RecommendationSlider from "../../components/RecommendationSlider";
+import Head from 'next/head'
 const TvSeries = ({ currentMovie, recommendationResult }) => {
-  console.log(currentMovie);
+
   return (
     <Container>
+       <Head>
+        <title>{currentMovie.original_name}</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <Typography variant="h5" sx={{ my: 2 }}>
         {currentMovie.original_name}
       </Typography>
@@ -28,9 +33,10 @@ const TvSeries = ({ currentMovie, recommendationResult }) => {
               {currentMovie.backdrop_path ? (
                 <img
                   src={`https://image.tmdb.org/t/p/original/${currentMovie.backdrop_path}`}
+                  alt={currentMovie.original_name}
                 />
               ) : (
-                <img src={"/noimage.jpg"} />
+                <img src={"/noimage.jpg"} alt="noimage" />
               )}
             </Box>
             <Box
@@ -41,7 +47,6 @@ const TvSeries = ({ currentMovie, recommendationResult }) => {
                 mt: 1,
               }}
             >
-             
               <StarIcon sx={{ color: "gold" }} />
               <Typography variant="h6">{currentMovie.vote_average}</Typography>
             </Box>
@@ -54,6 +59,7 @@ const TvSeries = ({ currentMovie, recommendationResult }) => {
               {currentMovie.production_companies[0]?.logo_path && (
                 <img
                   src={`https://image.tmdb.org/t/p/original/${currentMovie.production_companies[0]?.logo_path}`}
+                  alt={currentMovie.original_name}
                 />
               )}
               <Box sx={{ my: 3 }}>
@@ -67,20 +73,19 @@ const TvSeries = ({ currentMovie, recommendationResult }) => {
                   </Typography>
                 ))}
               </Box>
-              Original Language : {currentMovie.original_language?.toUpperCase()}
+              Original Language :{" "}
+              {currentMovie.original_language?.toUpperCase()}
             </Box>
           </Grid>
         </Grid>
       </Box>
       <Grid container sx={{ textAlign: "center" }}>
-     
+      <Grid lg={4} xs={12} item sx={{ marginTop: 2 }}>
           <Typography variant="h7">
-            First Air Date : {currentMovie.first_air_date}
+          First Air Date : {currentMovie.first_air_date}
           </Typography>
-      
-      
-      </Grid>
-
+        </Grid>
+        </Grid>
       <Typography variant="h5" sx={{ mt: 5 }}>
         Overview
       </Typography>
@@ -94,7 +99,10 @@ const TvSeries = ({ currentMovie, recommendationResult }) => {
             Recommendations
           </Typography>
 
-          <RecommendationSlider recommendation={recommendationResult} path="/tvseries/" />
+          <RecommendationSlider
+            recommendation={recommendationResult}
+            path="/tvseries/"
+          />
         </Box>
       )}
     </Container>
@@ -102,7 +110,6 @@ const TvSeries = ({ currentMovie, recommendationResult }) => {
 };
 
 export default TvSeries;
-
 
 export const getServerSideProps = async (context) => {
   const id = context.query.id;

@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import React from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import Container from "@mui/material/Container";
 import RecommendationSlider from "../../components/RecommendationSlider";
+import Head from 'next/head'
+import Image from "next/image"
 const Content = ({ currentMovie, recommendationResult }) => {
-  console.log(currentMovie);
   return (
+    
     <Container>
+       <Head>
+        <title>{currentMovie.original_title}</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <Typography variant="h5" sx={{ my: 2 }}>
         {currentMovie.original_title}
       </Typography>
@@ -24,13 +29,18 @@ const Content = ({ currentMovie, recommendationResult }) => {
       >
         <Grid container sx={{ display: "flex", justifyContent: "center" }}>
           <Grid item lg={8}>
-            <Box className="content-image-container">
+            <Box
+              className="content-image-container"
+              sx={{ display: "flex", justifyContent: "center" }}
+            >
               {currentMovie.backdrop_path ? (
                 <img
                   src={`https://image.tmdb.org/t/p/original/${currentMovie.backdrop_path}`}
+                  alt={currentMovie.original_name}
                 />
+                
               ) : (
-                <img src={"/noimage.jpg"} />
+                <img src={"/noimage.jpg"} width="50%" alt="null"/>
               )}
             </Box>
             <Box
@@ -41,7 +51,6 @@ const Content = ({ currentMovie, recommendationResult }) => {
                 mt: 1,
               }}
             >
-             
               <StarIcon sx={{ color: "gold" }} />
               <Typography variant="h6">{currentMovie.vote_average}</Typography>
             </Box>
@@ -54,6 +63,7 @@ const Content = ({ currentMovie, recommendationResult }) => {
               {currentMovie.production_companies[0]?.logo_path && (
                 <img
                   src={`https://image.tmdb.org/t/p/original/${currentMovie.production_companies[0]?.logo_path}`}
+                  alt={currentMovie.original_name}
                 />
               )}
               <Box sx={{ my: 3 }}>
@@ -67,7 +77,8 @@ const Content = ({ currentMovie, recommendationResult }) => {
                   </Typography>
                 ))}
               </Box>
-              Original Language : {currentMovie.original_language?.toUpperCase()}
+              Original Language :{" "}
+              {currentMovie.original_language?.toUpperCase()}
             </Box>
           </Grid>
         </Grid>
@@ -101,7 +112,10 @@ const Content = ({ currentMovie, recommendationResult }) => {
             Recommendations
           </Typography>
 
-          <RecommendationSlider recommendation={recommendationResult} path={"/content/"}/>
+          <RecommendationSlider
+            recommendation={recommendationResult}
+            path={"/content/"}
+          />
         </Box>
       )}
     </Container>

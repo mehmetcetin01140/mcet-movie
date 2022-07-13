@@ -19,11 +19,17 @@ a {
 }
 .app-bar{
 background-color: transparent;
+.app-main{
+  padding:0px !important;
+  img{
+    cursor:pointer
+  }
+}
 }
 .content-container{
   .content-image-container{
       overflow: hidden;
-      
+      width: 100%;
     img{
       max-width: 100%;
       max-height: 100%;
@@ -35,6 +41,17 @@ background-color: transparent;
       }
     }
   }
+  .content-production{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  
+    
+    img{
+      height: 35px;
+      object-fit: contain;
+    }
+  }
  
 }
 .sliderImage{
@@ -42,17 +59,7 @@ background-color: transparent;
   max-height: 100%;
   object-fit: cover;
 }
-.content-production{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
 
-  
-  img{
-    height: 35px;
-    object-fit: contain;
-  }
-}
 
 .Search{
   position: relative;
@@ -102,21 +109,35 @@ background-color: transparent;
   justify-content: center;
   border-radius: 10px;
   overflow-y: auto;
-  transition: 1s all;
   display: none;
+  background-color:rgb(15, 14, 14);
+  
   img{
  
-    width: 40px;
+    width: 65px;
     object-fit: cover;
     border-radius: 3px;
   }
+  .dropdown-item{
+    border-radius: 10px;
+    background-color: rgb(229, 229, 229);
+    transition: .3s all;
+    &:hover{
+      background-color:rgb(15, 14, 14);
+      color:white
+    }
+  }
   
 }
-
 .card-image{
   overflow: hidden;
   transition: .4s all;
   &:hover{
     transform: scale(1.1);
+  }
+}
+.mySwiper{
+  img{
+    cursor: pointer;
   }
 }
